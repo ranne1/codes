@@ -64,11 +64,15 @@ export function GuitarChordCard({ chord, isSelected, onClick, showName = false }
         
         {/* 프렛 번호 표시 */}
         <div className="absolute -bottom-6 left-0 w-full flex text-xs text-gray-600">
-          <div className="w-[22.5%] flex justify-center">1</div>
-          <div className="w-[22.5%] flex justify-center">2</div>
-          <div className="w-[22.5%] flex justify-center">3</div>
-          <div className="w-[22.5%] flex justify-center">4</div>
-          <div className="w-[10%] flex justify-center">5</div>
+          {(() => {
+            const startFret = chord.startFret || 1;
+            const fretNumbers = [startFret, startFret + 1, startFret + 2, startFret + 3, startFret + 4];
+            return fretNumbers.map((fretNum, index) => (
+              <div key={index} className={`${index < 4 ? 'w-[22.5%]' : 'w-[10%]'} flex justify-center`}>
+                {fretNum}
+              </div>
+            ));
+          })()}
         </div>
 
         {/* 손가락 위치 점들 */}
@@ -110,13 +114,15 @@ export function GuitarChordCard({ chord, isSelected, onClick, showName = false }
           
           // 프렛 위치 (검은 점에 손가락 번호)
           const fingerNumber = chord.fingers[stringIndex];
+          const startFret = chord.startFret || 1;
+          const relativeFret = fret; // 상대적 프렛 위치 (1-5)
           return (
             <div
               key={stringIndex}
               className="absolute w-4 h-4 bg-gray-800 rounded-full flex items-center justify-center"
               style={{
                 top: `${topPosition}%`,
-                left: `${(fret * 22.5) - 8}%`,
+                left: `${(relativeFret * 22.5) - 8}%`,
                 transform: "translateY(-50%)" // 정확히 줄 가운데 맞춤
               }}
             >

@@ -10,6 +10,7 @@ export interface ChordData {
   name: string;
   frets: (number | null)[]; // 6개 현, null은 뮤트, 0은 개방현
   fingers: (number | null)[]; // 6개 현에 대응하는 손가락 번호 (1-4), null은 뮤트나 개방현
+  startFret?: number; // 시작 프렛 번호 (기본값: 1)
 }
 
 export interface ChordPattern {
@@ -53,7 +54,7 @@ export const majorChords: ChordData[] = [
     id: "F", 
     name: "F", 
     frets: [1, 1, 2, 3, 3, 1], 
-    fingers: [1, 1, 2, 3, 4, 1] 
+    fingers: [1, 1, 2, 4, 3, 1] 
   },
   { 
     id: "G", 
@@ -71,7 +72,7 @@ export const majorChords: ChordData[] = [
     id: "B", 
     name: "B", 
     frets: [2, 4, 4, 4, 2, null], 
-    fingers: [1, 3, 4, 4, 2, null] 
+    fingers: [1, 4, 3, 2, 1, null] 
   },
 ];
 
@@ -80,8 +81,8 @@ export const minorChords: ChordData[] = [
   { 
     id: "Cm", 
     name: "Cm", 
-    frets: [null, 4, 3, 3, 1, 3], 
-    fingers: [null, 4, 2, 3, 1, 1] 
+    frets: [4, 1, 0, 1, 3, null], 
+    fingers: [4, 2, 0, 1, 3, null] 
   },
   { 
     id: "Dm", 
@@ -99,13 +100,14 @@ export const minorChords: ChordData[] = [
     id: "Fm", 
     name: "Fm", 
     frets: [1, 1, 1, 3, 3, 1], 
-    fingers: [1, 1, 1, 3, 4, 1] 
+    fingers: [1, 1, 1, 4, 3, 1] 
   },
   { 
     id: "Gm", 
     name: "Gm", 
-    frets: [3, 3, 3, 3, 1, 3], 
-    fingers: [2, 3, 4, 4, 1, 1] 
+    frets: [2, 2, 2, 4, 4, 2], 
+    fingers: [1, 1, 1, 4, 3, 1],
+    startFret: 2
   },
   { 
     id: "Am", 
@@ -117,7 +119,7 @@ export const minorChords: ChordData[] = [
     id: "Bm", 
     name: "Bm", 
     frets: [2, 3, 4, 4, 2, null], 
-    fingers: [1, 2, 3, 4, 1, null] 
+    fingers: [1, 2, 4, 3, 1, null] 
   },
 ];
 
@@ -172,8 +174,8 @@ export const minor7Chords: ChordData[] = [
   { 
     id: "Cm7", 
     name: "Cm7", 
-    frets: [null, 3, 1, 3, 1, 3], 
-    fingers: [null, 2, 1, 3, 1, 4] 
+    frets: [null, 1, 3, 1, 3, null], 
+    fingers: [null, 1, 4, 1, 3, null] 
   },
   { 
     id: "Dm7", 
@@ -196,8 +198,9 @@ export const minor7Chords: ChordData[] = [
   { 
     id: "Gm7", 
     name: "Gm7", 
-    frets: [3, 1, 3, 3, 1, 3], 
-    fingers: [3, 1, 2, 4, 1, 3] 
+    frets: [2, 2, 2, 2, 4, 2], 
+    fingers: [1, 1, 1, 1, 3, 1],
+    startFret: 2
   },
   { 
     id: "Am7", 
@@ -236,8 +239,8 @@ export const major7Chords: ChordData[] = [
   { 
     id: "Fmaj7", 
     name: "Fmaj7", 
-    frets: [1, 1, 2, 2, 3, 1], 
-    fingers: [1, 1, 2, 3, 4, 1] 
+    frets: [0, 1, 2, 3, null, null], 
+    fingers: [0, 1, 2, 3, null, null] 
   },
   { 
     id: "Gmaj7", 
@@ -254,8 +257,8 @@ export const major7Chords: ChordData[] = [
   { 
     id: "Bmaj7", 
     name: "Bmaj7", 
-    frets: [2, 1, 4, 4, 2, null], 
-    fingers: [1, 2, 3, 4, 1, null] 
+    frets: [2, 0, 3, 1, null, null], 
+    fingers: [3, 0, 4, 1, null, null] 
   }
 ];
 
@@ -283,7 +286,7 @@ export const suspendedChords: ChordData[] = [
     id: "Dsus4", 
     name: "Dsus4", 
     frets: [3, 3, 2, 0, null, null], 
-    fingers: [3, 4, 2, null, null, null] 
+    fingers: [3, 2, 1, 0, null, null] 
   },
   { 
     id: "Esus2", 
@@ -296,18 +299,6 @@ export const suspendedChords: ChordData[] = [
     name: "Esus4", 
     frets: [0, 0, 2, 2, 0, 0], 
     fingers: [null, null, 1, 2, null, null] 
-  },
-  { 
-    id: "Gsus2", 
-    name: "Gsus2", 
-    frets: [3, 0, 0, 2, 3, 3], 
-    fingers: [2, null, null, 1, 3, 4] 
-  },
-  { 
-    id: "Gsus4", 
-    name: "Gsus4", 
-    frets: [3, 1, 0, 0, 3, 3], 
-    fingers: [2, 1, null, null, 3, 4] 
   },
   { 
     id: "Asus2", 
@@ -378,12 +369,6 @@ export const add9Chords: ChordData[] = [
     fingers: [null, 3, 2, null, null, null] 
   },
   { 
-    id: "Eadd9", 
-    name: "Eadd9", 
-    frets: [0, 2, 1, 2, 2, 0], 
-    fingers: [null, 2, 1, 3, 4, null] 
-  },
-  { 
     id: "Gadd9", 
     name: "Gadd9", 
     frets: [3, 0, 0, 2, 0, 3], 
@@ -410,12 +395,6 @@ export const sixthChords: ChordData[] = [
     name: "D6", 
     frets: [2, 0, 2, 0, null, null], 
     fingers: [1, null, 2, null, null, null] 
-  },
-  { 
-    id: "E6", 
-    name: "E6", 
-    frets: [0, 2, 1, 2, 2, 0], 
-    fingers: [null, 2, 1, 3, 4, null] 
   },
   { 
     id: "G6", 
