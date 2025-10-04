@@ -433,7 +433,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
               <span className="font-medium">🎼 음계 특징:</span>
               <ul className="ml-4 mt-1 space-y-1">
                 <li>• 장음계: 밝은 느낌의 곡에 주로 사용</li>
-                <li>• 화성단음계: 클래식, 중동 음악에 자주 등장</li>
+                <li>• 화성단음계: 어두운 느낌의 곡에 주로 사용</li>
                 <li>• 가락단음계: 상행↗️과 하행↘️이 다른 특별한 음계</li>
               </ul>
             </div>
