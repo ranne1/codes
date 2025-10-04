@@ -862,30 +862,6 @@ export const allChordInfo: ChordInfo[] = [
     category: "서스펜디드"
   },
   {
-    name: "Gsus2",
-    fullName: "G Suspended 2nd",
-    positions: [
-      { string: 1, fret: 3 }, { string: 4, fret: 2 }, { string: 5, fret: 3 }, { string: 6, fret: 3 }
-    ],
-    difficulty: "중급",
-    notes: ["G", "A", "D"],
-    description: "풍성한 서스펜디드 코드입니다.",
-    tips: ["G 코드에서 변형된 형태입니다", "4번줄을 추가로 누르세요"],
-    category: "서스펜디드"
-  },
-  {
-    name: "Gsus4",
-    fullName: "G Suspended 4th",
-    positions: [
-      { string: 1, fret: 3 }, { string: 2, fret: 1 }, { string: 6, fret: 3 }
-    ],
-    difficulty: "중급",
-    notes: ["G", "C", "D"],
-    description: "클래식한 서스펜디드 코드입니다.",
-    tips: ["G 코드에서 2번줄을 1프렛으로 바꾸세요", "컨트리 음악에서 자주 사용됩니다"],
-    category: "서스펜디드"
-  },
-  {
     name: "Asus2",
     fullName: "A Suspended 2nd",
     positions: [
@@ -933,18 +909,6 @@ export const allChordInfo: ChordInfo[] = [
     notes: ["D", "F#", "A", "E"],
     description: "밝은 애드나인 코드입니다.",
     tips: ["D 코드에서 1번줄을 빼고 연주하세요", "포크와 컨트리에서 인기입니다"],
-    category: "애드나인"
-  },
-  {
-    name: "Eadd9",
-    fullName: "E Add 9th",
-    positions: [
-      { string: 2, fret: 2 }, { string: 3, fret: 1 }, { string: 4, fret: 2 }, { string: 5, fret: 2 }
-    ],
-    difficulty: "중급",
-    notes: ["E", "G#", "B", "F#"],
-    description: "드라마틱한 애드나인 코드입니다.",
-    tips: ["E 코드에서 변형된 형태입니다", "록 발라드에서 효과적입니다"],
     category: "애드나인"
   },
   {
@@ -1033,18 +997,6 @@ export const allChordInfo: ChordInfo[] = [
     notes: ["D", "F#", "A", "B"],
     description: "밝은 6th 코드입니다.",
     tips: ["D 코드에서 2번줄을 빼고 연주하세요", "컨트리 음악에서 자주 사용됩니다"],
-    category: "식스"
-  },
-  {
-    name: "E6",
-    fullName: "E Major 6th",
-    positions: [
-      { string: 2, fret: 2 }, { string: 3, fret: 1 }, { string: 4, fret: 2 }, { string: 5, fret: 2 }
-    ],
-    difficulty: "중급",
-    notes: ["E", "G#", "B", "C#"],
-    description: "화려한 6th 코드입니다.",
-    tips: ["E 코드에서 변형된 형태입니다", "블루스와 재즈에서 사용됩니다"],
     category: "식스"
   },
   {

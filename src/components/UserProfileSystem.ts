@@ -99,7 +99,7 @@ export const ALL_BADGES: Badge[] = [
 export const CHORD_LEVELS = {
   beginner: ['C', 'D', 'E', 'G', 'A', 'Em', 'Am', 'Dm'],
   intermediate: ['F', 'B', 'Cm', 'Fm', 'Gm', 'Bm', 'C7', 'D7', 'E7', 'G7', 'A7', 'B7'],
-  advanced: ['Cm7', 'Dm7', 'Em7', 'Fm7', 'Gm7', 'Am7', 'Bm7', 'Cmaj7', 'Dmaj7', 'Emaj7', 'Fmaj7', 'Gmaj7', 'Amaj7', 'Bmaj7', 'Csus2', 'Csus4', 'Dsus2', 'Dsus4', 'Esus2', 'Esus4', 'Gsus2', 'Gsus4', 'Asus2', 'Asus4', 'Cdim', 'Ddim', 'Edim', 'Gdim', 'Adim', 'Bdim', 'Cadd9', 'Dadd9', 'Eadd9', 'Gadd9', 'Aadd9', 'C6', 'D6', 'E6', 'G6', 'A6']
+  advanced: ['Cm7', 'Dm7', 'Em7', 'Fm7', 'Gm7', 'Am7', 'Bm7', 'Cmaj7', 'Dmaj7', 'Emaj7', 'Fmaj7', 'Gmaj7', 'Amaj7', 'Bmaj7', 'Csus2', 'Csus4', 'Dsus2', 'Dsus4', 'Esus2', 'Esus4', 'Asus2', 'Asus4', 'Cdim', 'Ddim', 'Edim', 'Gdim', 'Adim', 'Bdim', 'Cadd9', 'Dadd9', 'Gadd9', 'Aadd9', 'C6', 'D6', 'G6', 'A6']
 };
 
 class UserProfileManager {
