@@ -483,7 +483,7 @@ export const allChordInfo: ChordInfo[] = [
     difficulty: "중급",
     notes: ["F", "A", "C"],
     description: "첫 번째 바레 코드로, 검지로 여러 줄을 눌러야 합니다.",
-    tips: ["검지로 1, 2, 6번줄을 바레하세요", "4번줄은 4번 손가락, 5번줄은 3번 손가락으로 누르세요"],
+    tips: ["검지로 1, 2, 6번줄을 바레하세요", "3번줄은 2번 손가락, 4번줄은 4번 손가락, 5번줄은 3번 손가락으로 누르세요"],
     category: "바레"
   },
   {
@@ -520,7 +520,7 @@ export const allChordInfo: ChordInfo[] = [
     difficulty: "중급",
     notes: ["B", "D#", "F#"],
     description: "바레 코드 형태의 메이저 코드입니다.",
-    tips: ["2프렛에서 바레를 하세요", "4프렛에서 2, 3, 4번줄을 각각 다른 손가락으로 누르세요"],
+    tips: ["2프렛에서 바레를 하세요", "4프렛에서 2번줄은 4번 손가락, 3번줄은 3번 손가락, 4번줄은 2번 손가락으로 누르세요"],
     category: "바레"
   },
   
@@ -535,7 +535,7 @@ export const allChordInfo: ChordInfo[] = [
     difficulty: "중급",
     notes: ["C", "Eb", "G"],
     description: "슬픈 느낌의 마이너 코드입니다.",
-    tips: ["바레 코드 형태입니다", "정확한 손가락 위치가 중요합니다"],
+    tips: ["2번줄은 4번 손가락, 3번줄은 2번 손가락, 4번줄은 1번 손가락, 5번줄은 3번 손가락으로 누르세요", "정확한 손가락 위치가 중요합니다"],
     category: "마이너"
   },
   {
@@ -572,7 +572,7 @@ export const allChordInfo: ChordInfo[] = [
     difficulty: "중급",
     notes: ["F", "Ab", "C"],
     description: "바레 코드 형태의 마이너 코드입니다.",
-    tips: ["1프렛에서 바레를 하세요", "F메이저와 비슷하지만 3번줄도 1프렛입니다"],
+    tips: ["1프렛에서 바레를 하세요", "3번줄은 1번 손가락, 4번줄은 4번 손가락, 5번줄은 3번 손가락으로 누르세요"],
     category: "바레"
   },
   {
@@ -585,7 +585,7 @@ export const allChordInfo: ChordInfo[] = [
     difficulty: "중급",
     notes: ["G", "Bb", "D"],
     description: "바레 코드 형태의 마이너 코드입니다.",
-    tips: ["4프렛에서 바레를 하세요", "6프렛에서 4, 5번줄을 누르세요"],
+    tips: ["4프렛에서 바레를 하세요", "4번줄은 4번 손가락, 5번줄은 3번 손가락으로 누르세요"],
     category: "바레"
   },
   {
@@ -610,7 +610,7 @@ export const allChordInfo: ChordInfo[] = [
     difficulty: "중급",
     notes: ["B", "D", "F#"],
     description: "바레 코드 형태의 마이너 코드입니다.",
-    tips: ["2프렛에서 바레를 하세요", "4프렛까지 사용하는 코드입니다"],
+    tips: ["2프렛에서 바레를 하세요", "2번줄은 2번 손가락, 3번줄은 4번 손가락, 4번줄은 3번 손가락으로 누르세요"],
     category: "바레"
   },
 
@@ -834,7 +834,7 @@ export const allChordInfo: ChordInfo[] = [
     difficulty: "중급",
     notes: ["D", "G", "A"],
     description: "힘찬 느낌의 서스펜디드 코드입니다.",
-    tips: ["D 코드에서 1번줄을 3프렛으로 바꾸세요", "록 음악에서 자주 사용됩니다"],
+    tips: ["1번줄은 3번 손가락, 2번줄은 2번 손가락, 3번줄은 1번 손가락으로 누르세요", "록 음악에서 자주 사용됩니다"],
     category: "서스펜디드"
   },
   {
