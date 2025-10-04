@@ -397,7 +397,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
           
           <TabsContent value="harmonic" className="mt-4">
             <ScaleCard
-              title={`${selectedKey} 화성단음계 (Harmonic Minor)`}
+              title={`${selectedKey}m 화성단음계 (Harmonic Minor)`}
               notes={harmonicMinorNotes}
               description="자연단음계의 7음을 반음 올린 음계로, 동양적이고 신비로운 느낌을 줍니다."
               formula="장2-단2-장2-장2-단2-증2-단2"
@@ -407,7 +407,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
           
           <TabsContent value="melodic" className="mt-4">
             <ScaleCard
-              title={`${selectedKey} 가락단음계 (Melodic Minor)`}
+              title={`${selectedKey}m 가락단음계 (Melodic Minor)`}
               notes={melodicMinorNotes}
               description="상행 시 6, 7음을 반음 올리고, 하행 시 자연단음계와 같아지는 음계입니다."
               formula="장2-단2-장2-장2-장2-장2-단2"
