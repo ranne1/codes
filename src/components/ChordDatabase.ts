@@ -483,7 +483,7 @@ export const allChordInfo: ChordInfo[] = [
     difficulty: "중급",
     notes: ["F", "A", "C"],
     description: "첫 번째 바레 코드로, 검지로 여러 줄을 눌러야 합니다.",
-    tips: ["검지로 1, 2, 6번줄을 바레하세요", "꾸준한 연습이 필요한 코드입니다"],
+    tips: ["검지로 1, 2, 6번줄을 바레하세요", "4번줄은 4번 손가락, 5번줄은 3번 손가락으로 누르세요"],
     category: "바레"
   },
   {
@@ -520,7 +520,7 @@ export const allChordInfo: ChordInfo[] = [
     difficulty: "중급",
     notes: ["B", "D#", "F#"],
     description: "바레 코드 형태의 메이저 코드입니다.",
-    tips: ["2프렛에서 바레를 하세요", "4프렛에서 여러 줄을 누르세요"],
+    tips: ["2프렛에서 바레를 하세요", "4프렛에서 2, 3, 4번줄을 각각 다른 손가락으로 누르세요"],
     category: "바레"
   },
   
@@ -579,13 +579,13 @@ export const allChordInfo: ChordInfo[] = [
     name: "Gm",
     fullName: "G Minor",
     positions: [
-      { string: 1, fret: 3 }, { string: 2, fret: 3 }, { string: 3, fret: 3 },
-      { string: 4, fret: 3 }, { string: 5, fret: 1 }, { string: 6, fret: 3 }
+      { string: 1, fret: 4 }, { string: 2, fret: 4 }, { string: 3, fret: 4 },
+      { string: 4, fret: 6 }, { string: 5, fret: 6 }, { string: 6, fret: 4 }
     ],
     difficulty: "중급",
     notes: ["G", "Bb", "D"],
     description: "바레 코드 형태의 마이너 코드입니다.",
-    tips: ["3프렛에서 바레를 하세요", "복잡한 손가락 배치가 필요합니다"],
+    tips: ["4프렛에서 바레를 하세요", "6프렛에서 4, 5번줄을 누르세요"],
     category: "바레"
   },
   {
