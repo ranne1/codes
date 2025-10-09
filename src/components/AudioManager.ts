@@ -45,10 +45,10 @@ export class AudioManager {
     this.reverb.buffer = impulse;
   }
 
-  // 음표를 주파수로 변환
-  noteToFrequency(note: string): number {
-    const noteFrequencies: { [key: string]: number } = {
-      'C': 261.63,
+  // 음표를 주파수로 변환 (옥타브 정보 포함)
+  noteToFrequency(note: string, octave: number = 4): number {
+    const baseFrequencies: { [key: string]: number } = {
+      'C': 261.63,   // C4
       'C#': 277.18, 'Db': 277.18,
       'D': 293.66,
       'D#': 311.13, 'Eb': 311.13,
@@ -61,7 +61,10 @@ export class AudioManager {
       'A#': 466.16, 'Bb': 466.16,
       'B': 493.88
     };
-    return noteFrequencies[note] || 440;
+    
+    const baseFreq = baseFrequencies[note] || 440;
+    // 옥타브에 따라 주파수 조정 (각 옥타브마다 2배씩)
+    return baseFreq * Math.pow(2, octave - 4);
   }
 
   // 기타 줄별 개방현 주파수 (4프렛까지의 주파수 계산용)
@@ -150,12 +153,12 @@ export class AudioManager {
   }
 
   // 단일 음 재생
-  async playNote(note: string, duration: number = 1500) {
+  async playNote(note: string, duration: number = 1500, octave: number = 4) {
     await this.initialize();
     
     if (!this.audioContext) return;
 
-    const frequency = this.noteToFrequency(note);
+    const frequency = this.noteToFrequency(note, octave);
     const startTime = this.audioContext.currentTime;
     this.createGuitarSound(frequency, startTime, duration / 1000);
   }

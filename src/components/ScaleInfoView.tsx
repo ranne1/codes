@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ArrowLeft, Music, Volume2, Play, Guitar } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
@@ -91,13 +91,13 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
   const melodicMinorChords = getScaleChords(rootIndex, 'melodicMinor');
 
   // 개별 음 재생 함수
-  const playNote = async (note: string) => {
+  const playNote = async (note: string, octave: number = 4) => {
     if (isPlaying || !audioManagerRef.current) return;
     
     setIsPlaying(true);
     setPlayingNote(note);
     try {
-      await audioManagerRef.current.playNote(note, 1000);
+      await audioManagerRef.current.playNote(note, 1000, octave);
     } catch (error) {
       console.error('음 재생 오류:', error);
     } finally {
@@ -116,7 +116,9 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
     try {
       for (let i = 0; i < notes.length; i++) {
         setPlayingNote(notes[i]);
-        await audioManagerRef.current.playNote(notes[i], 600);
+        // 음계 진행에 따라 옥타브 증가 (C4, D4, E4, F4, G4, A4, B4, C5)
+        const octave = 4 + Math.floor(i / 7);
+        await audioManagerRef.current.playNote(notes[i], 600, octave);
         await new Promise(resolve => setTimeout(resolve, 700)); // 각 음 사이 간격
       }
     } catch (error) {
@@ -187,7 +189,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
           return (
             <button
               key={index}
-              onClick={() => playNote(note)}
+              onClick={() => playNote(note, 4 + Math.floor(index / 7))}
               disabled={isPlaying}
               className={`
                 transition-all duration-200 transform
@@ -253,7 +255,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
               return (
                 <button
                   key={`desc-${index}`}
-                  onClick={() => playNote(note)}
+                  onClick={() => playNote(note, 4 + Math.floor(index / 7))}
                   disabled={isPlaying}
                   className={`
                     transition-all duration-200 transform

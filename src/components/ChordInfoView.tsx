@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ArrowLeft, Music, Search, BookOpen, Info, Play, Volume2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -54,12 +54,12 @@ export function ChordInfoView({ onBack }: ChordInfoViewProps) {
   };
 
   // 단일 음 재생 함수
-  const playNote = async (note: string) => {
+  const playNote = async (note: string, octave: number = 4) => {
     if (isPlaying || !audioManagerRef.current) return;
     
     setIsPlaying(true);
     try {
-      await audioManagerRef.current.playNote(note, 1500);
+      await audioManagerRef.current.playNote(note, 1500, octave);
     } catch (error) {
       console.error('오디오 재생 오류:', error);
     } finally {
