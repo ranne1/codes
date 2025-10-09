@@ -95,9 +95,21 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
     let currentOctave = 4; // 시작 옥타브
     
     for (let i = 0; i <= noteIndex; i++) {
-      // G 다음에 A가 오면 옥타브 증가 (G4 → A5)
-      if (i > 0 && notes[i] === 'A' && notes[i-1] === 'G') {
-        currentOctave++;
+      if (i > 0) {
+        const currentNote = notes[i];
+        const previousNote = notes[i-1];
+        
+        // 알파벳 순서 정의 (C, C#, D, D#, E, F, F#, G, G#, A, A#, B)
+        const noteOrder = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        
+        const currentIndex = noteOrder.indexOf(currentNote);
+        const previousIndex = noteOrder.indexOf(previousNote);
+        
+        // 알파벳이 감소하는 경우 (예: A# → C) 옥타브 증가
+        if (currentIndex < previousIndex) {
+          currentOctave++;
+        }
+        // 알파벳이 증가하는 경우는 이전 옥타브 유지
       }
     }
     
@@ -133,9 +145,21 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
       for (let i = 0; i < notes.length; i++) {
         setPlayingNote(notes[i]);
         
-        // G 다음에 A가 오면 옥타브 증가 (G4 → A5)
-        if (i > 0 && notes[i] === 'A' && notes[i-1] === 'G') {
-          currentOctave++;
+        if (i > 0) {
+          const currentNote = notes[i];
+          const previousNote = notes[i-1];
+          
+          // 알파벳 순서 정의 (C, C#, D, D#, E, F, F#, G, G#, A, A#, B)
+          const noteOrder = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+          
+          const currentIndex = noteOrder.indexOf(currentNote);
+          const previousIndex = noteOrder.indexOf(previousNote);
+          
+          // 알파벳이 감소하는 경우 (예: A# → C) 옥타브 증가
+          if (currentIndex < previousIndex) {
+            currentOctave++;
+          }
+          // 알파벳이 증가하는 경우는 이전 옥타브 유지
         }
         
         await audioManagerRef.current.playNote(notes[i], 600, currentOctave);
