@@ -113,20 +113,20 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
         console.log(`${i}: ${previousNote}(${previousIndex}) → ${currentNote}(${currentIndex}), 현재 옥타브: ${currentOctave}`);
         
         if (isDescending) {
-          // 하행 음계: 알파벳이 증가하는 경우 옥타브 감소
+          // 하행 음계: 알파벳이 증가하는 경우 옥타브 감소, 감소하는 경우 옥타브 유지
           if (currentIndex > previousIndex) {
             currentOctave--;
-            console.log(`  → 하행: 옥타브 감소! ${currentOctave+1} → ${currentOctave}`);
+            console.log(`  → 하행: 알파벳 증가 → 옥타브 감소! ${currentOctave+1} → ${currentOctave}`);
           } else {
-            console.log(`  → 하행: 옥타브 유지: ${currentOctave}`);
+            console.log(`  → 하행: 알파벳 감소 → 옥타브 유지: ${currentOctave}`);
           }
         } else {
-          // 상행 음계: 알파벳이 감소하는 경우 옥타브 증가
+          // 상행 음계: 알파벳이 감소하는 경우 옥타브 증가, 증가하는 경우 옥타브 유지
           if (currentIndex < previousIndex) {
             currentOctave++;
-            console.log(`  → 상행: 옥타브 증가! ${currentOctave-1} → ${currentOctave}`);
+            console.log(`  → 상행: 알파벳 감소 → 옥타브 증가! ${currentOctave-1} → ${currentOctave}`);
           } else {
-            console.log(`  → 상행: 옥타브 유지: ${currentOctave}`);
+            console.log(`  → 상행: 알파벳 증가 → 옥타브 유지: ${currentOctave}`);
           }
         }
       } else {
