@@ -94,11 +94,6 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
   const getNoteOctave = (notes: string[], noteIndex: number, isDescending: boolean = false): number => {
     let currentOctave = 4; // 시작 옥타브
     
-    console.log(`=== 옥타브 계산 디버깅 ===`);
-    console.log(`음계: [${notes.join(', ')}]`);
-    console.log(`계산할 인덱스: ${noteIndex}`);
-    console.log(`하행 여부: ${isDescending}`);
-    
     if (isDescending) {
       // 하행 음계: 상행의 마지막 옥타브에서 시작
       // 상행 음계 배열을 사용해서 마지막 옥타브를 구함
@@ -118,8 +113,6 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
       
       // 하행은 상행의 마지막 옥타브에서 시작
       currentOctave = ascendingOctave;
-      console.log(`하행 시작 옥타브 (상행 마지막): ${currentOctave}`);
-      console.log(`하행 음계 순서: [${notes.join(', ')}]`);
       
       // 하행 음계의 각 음에 대해 옥타브 계산
       for (let i = 0; i <= noteIndex; i++) {
@@ -130,17 +123,10 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
           const currentIndex = noteOrder.indexOf(currentNote);
           const previousIndex = noteOrder.indexOf(previousNote);
           
-          console.log(`${i}: ${previousNote}(${previousIndex}) → ${currentNote}(${currentIndex}), 현재 옥타브: ${currentOctave}`);
-          
           // 하행: 알파벳이 증가하면 옥타브 감소, 감소하면 옥타브 유지
           if (currentIndex > previousIndex) {
             currentOctave--;
-            console.log(`  → 하행: 알파벳 증가 → 옥타브 감소! ${currentOctave+1} → ${currentOctave}`);
-          } else {
-            console.log(`  → 하행: 알파벳 감소 → 옥타브 유지: ${currentOctave}`);
           }
-        } else {
-          console.log(`${i}: ${notes[i]} (첫 번째 음), 옥타브: ${currentOctave}`);
         }
       }
     } else {
@@ -153,23 +139,13 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
           const currentIndex = noteOrder.indexOf(currentNote);
           const previousIndex = noteOrder.indexOf(previousNote);
           
-          console.log(`${i}: ${previousNote}(${previousIndex}) → ${currentNote}(${currentIndex}), 현재 옥타브: ${currentOctave}`);
-          
           // 상행: 알파벳이 감소하면 옥타브 증가, 증가하면 옥타브 유지
           if (currentIndex < previousIndex) {
             currentOctave++;
-            console.log(`  → 상행: 알파벳 감소 → 옥타브 증가! ${currentOctave-1} → ${currentOctave}`);
-          } else {
-            console.log(`  → 상행: 알파벳 증가 → 옥타브 유지: ${currentOctave}`);
           }
-        } else {
-          console.log(`${i}: ${notes[i]} (첫 번째 음), 옥타브: ${currentOctave}`);
         }
       }
     }
-    
-    console.log(`최종 결과: ${notes[noteIndex]}${currentOctave}`);
-    console.log(`========================`);
     
     return currentOctave;
   };
@@ -217,8 +193,6 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
           }
         }
         currentOctave = ascendingOctave;
-        console.log(`하행 시작 옥타브 (상행 마지막): ${currentOctave}`);
-        console.log(`하행 음계 순서: [${notes.join(', ')}]`);
       }
       
       for (let i = 0; i < notes.length; i++) {
