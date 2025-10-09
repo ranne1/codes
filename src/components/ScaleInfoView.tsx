@@ -99,21 +99,38 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
     console.log(`계산할 인덱스: ${noteIndex}`);
     console.log(`하행 여부: ${isDescending}`);
     
-    for (let i = 0; i <= noteIndex; i++) {
-      if (i > 0) {
+    if (isDescending) {
+      // 하행 음계: 상행의 마지막 옥타브에서 시작
+      // 먼저 상행으로 옥타브를 계산해서 마지막 옥타브를 구함
+      let ascendingOctave = 4;
+      for (let i = 1; i < notes.length; i++) {
         const currentNote = notes[i];
         const previousNote = notes[i-1];
-        
-        // 알파벳 순서 정의 (C, C#, D, D#, E, F, F#, G, G#, A, A#, B)
         const noteOrder = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-        
         const currentIndex = noteOrder.indexOf(currentNote);
         const previousIndex = noteOrder.indexOf(previousNote);
         
-        console.log(`${i}: ${previousNote}(${previousIndex}) → ${currentNote}(${currentIndex}), 현재 옥타브: ${currentOctave}`);
-        
-        if (isDescending) {
-          // 하행 음계: 알파벳이 증가하는 경우 옥타브 감소, 감소하는 경우 옥타브 유지
+        if (currentIndex < previousIndex) {
+          ascendingOctave++;
+        }
+      }
+      
+      // 하행은 상행의 마지막 옥타브에서 시작
+      currentOctave = ascendingOctave;
+      console.log(`하행 시작 옥타브 (상행 마지막): ${currentOctave}`);
+      
+      // 하행 음계의 각 음에 대해 옥타브 계산
+      for (let i = 0; i <= noteIndex; i++) {
+        if (i > 0) {
+          const currentNote = notes[i];
+          const previousNote = notes[i-1];
+          const noteOrder = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+          const currentIndex = noteOrder.indexOf(currentNote);
+          const previousIndex = noteOrder.indexOf(previousNote);
+          
+          console.log(`${i}: ${previousNote}(${previousIndex}) → ${currentNote}(${currentIndex}), 현재 옥타브: ${currentOctave}`);
+          
+          // 하행: 알파벳이 증가하면 옥타브 감소, 감소하면 옥타브 유지
           if (currentIndex > previousIndex) {
             currentOctave--;
             console.log(`  → 하행: 알파벳 증가 → 옥타브 감소! ${currentOctave+1} → ${currentOctave}`);
@@ -121,16 +138,31 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
             console.log(`  → 하행: 알파벳 감소 → 옥타브 유지: ${currentOctave}`);
           }
         } else {
-          // 상행 음계: 알파벳이 감소하는 경우 옥타브 증가, 증가하는 경우 옥타브 유지
+          console.log(`${i}: ${notes[i]} (첫 번째 음), 옥타브: ${currentOctave}`);
+        }
+      }
+    } else {
+      // 상행 음계: 기존 로직
+      for (let i = 0; i <= noteIndex; i++) {
+        if (i > 0) {
+          const currentNote = notes[i];
+          const previousNote = notes[i-1];
+          const noteOrder = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+          const currentIndex = noteOrder.indexOf(currentNote);
+          const previousIndex = noteOrder.indexOf(previousNote);
+          
+          console.log(`${i}: ${previousNote}(${previousIndex}) → ${currentNote}(${currentIndex}), 현재 옥타브: ${currentOctave}`);
+          
+          // 상행: 알파벳이 감소하면 옥타브 증가, 증가하면 옥타브 유지
           if (currentIndex < previousIndex) {
             currentOctave++;
             console.log(`  → 상행: 알파벳 감소 → 옥타브 증가! ${currentOctave-1} → ${currentOctave}`);
           } else {
             console.log(`  → 상행: 알파벳 증가 → 옥타브 유지: ${currentOctave}`);
           }
+        } else {
+          console.log(`${i}: ${notes[i]} (첫 번째 음), 옥타브: ${currentOctave}`);
         }
-      } else {
-        console.log(`${i}: ${notes[i]} (첫 번째 음), 옥타브: ${currentOctave}`);
       }
     }
     
@@ -159,12 +191,31 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
   };
 
   // 전체 음계 재생 함수
-  const playScale = async (notes: string[]) => {
+  const playScale = async (notes: string[], isDescending: boolean = false) => {
     if (isPlaying || !audioManagerRef.current) return;
     
     setIsPlaying(true);
     try {
       let currentOctave = 4; // 시작 옥타브
+      
+      if (isDescending) {
+        // 하행 음계: 상행의 마지막 옥타브에서 시작
+        // 먼저 상행으로 옥타브를 계산해서 마지막 옥타브를 구함
+        let ascendingOctave = 4;
+        for (let i = 1; i < notes.length; i++) {
+          const currentNote = notes[i];
+          const previousNote = notes[i-1];
+          const noteOrder = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+          const currentIndex = noteOrder.indexOf(currentNote);
+          const previousIndex = noteOrder.indexOf(previousNote);
+          
+          if (currentIndex < previousIndex) {
+            ascendingOctave++;
+          }
+        }
+        currentOctave = ascendingOctave;
+        console.log(`하행 시작 옥타브 (상행 마지막): ${currentOctave}`);
+      }
       
       for (let i = 0; i < notes.length; i++) {
         setPlayingNote(notes[i]);
@@ -179,11 +230,17 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
           const currentIndex = noteOrder.indexOf(currentNote);
           const previousIndex = noteOrder.indexOf(previousNote);
           
-          // 알파벳이 감소하는 경우 (예: A# → C) 옥타브 증가
-          if (currentIndex < previousIndex) {
-            currentOctave++;
+          if (isDescending) {
+            // 하행: 알파벳이 증가하면 옥타브 감소, 감소하면 옥타브 유지
+            if (currentIndex > previousIndex) {
+              currentOctave--;
+            }
+          } else {
+            // 상행: 알파벳이 감소하면 옥타브 증가, 증가하면 옥타브 유지
+            if (currentIndex < previousIndex) {
+              currentOctave++;
+            }
           }
-          // 알파벳이 증가하는 경우는 이전 옥타브 유지
         }
         
         await audioManagerRef.current.playNote(notes[i], 600, currentOctave);
@@ -296,7 +353,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
             <div className="flex items-center justify-between mb-2">
               <h4 className="font-medium text-gray-700">하행 (Descending)</h4>
               <Button
-                onClick={() => playScale([...descendingNotes].reverse())}
+                onClick={() => playScale([...descendingNotes].reverse(), true)}
                 disabled={isPlaying}
                 variant="outline"
                 size="sm"
