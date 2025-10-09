@@ -90,6 +90,20 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
   const harmonicMinorChords = getScaleChords(rootIndex, 'harmonicMinor');
   const melodicMinorChords = getScaleChords(rootIndex, 'melodicMinor');
 
+  // 음계에서 특정 음의 옥타브 계산 함수
+  const getNoteOctave = (notes: string[], noteIndex: number): number => {
+    let currentOctave = 4; // 시작 옥타브
+    
+    for (let i = 0; i <= noteIndex; i++) {
+      // G 다음에 A가 오면 옥타브 증가 (G4 → A5)
+      if (i > 0 && notes[i] === 'A' && notes[i-1] === 'G') {
+        currentOctave++;
+      }
+    }
+    
+    return currentOctave;
+  };
+
   // 개별 음 재생 함수
   const playNote = async (note: string, octave: number = 4) => {
     if (isPlaying || !audioManagerRef.current) return;
@@ -114,11 +128,17 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
     
     setIsPlaying(true);
     try {
+      let currentOctave = 4; // 시작 옥타브
+      
       for (let i = 0; i < notes.length; i++) {
         setPlayingNote(notes[i]);
-        // 음계 진행에 따라 옥타브 증가 (C4, D4, E4, F4, G4, A4, B4, C5)
-        const octave = 4 + Math.floor(i / 7);
-        await audioManagerRef.current.playNote(notes[i], 600, octave);
+        
+        // G 다음에 A가 오면 옥타브 증가 (G4 → A5)
+        if (i > 0 && notes[i] === 'A' && notes[i-1] === 'G') {
+          currentOctave++;
+        }
+        
+        await audioManagerRef.current.playNote(notes[i], 600, currentOctave);
         await new Promise(resolve => setTimeout(resolve, 700)); // 각 음 사이 간격
       }
     } catch (error) {
@@ -189,7 +209,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
           return (
             <button
               key={index}
-              onClick={() => playNote(note, 4 + Math.floor(index / 7))}
+              onClick={() => playNote(note, getNoteOctave(notes, index))}
               disabled={isPlaying}
               className={`
                 transition-all duration-200 transform
@@ -255,7 +275,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
               return (
                 <button
                   key={`desc-${index}`}
-                  onClick={() => playNote(note, 4 + Math.floor(index / 7))}
+                  onClick={() => playNote(note, getNoteOctave(descendingNotes, index))}
                   disabled={isPlaying}
                   className={`
                     transition-all duration-200 transform
