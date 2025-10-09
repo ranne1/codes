@@ -19,7 +19,7 @@ const SCALE_FORMULAS = {
   major: [0, 2, 4, 5, 7, 9, 11],
   harmonicMinor: [0, 2, 3, 5, 7, 8, 11],
   melodicMinor: [0, 2, 3, 5, 7, 9, 11],
-  melodicMinorDescending: [0, 10, 8, 7, 5, 3, 2] // 하행 가락단음계 (자연단음계)
+  melodicMinorDescending: [0, 2, 3, 5, 7, 8, 10] // 하행 가락단음계 (자연단음계와 동일)
 };
 
 const NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
