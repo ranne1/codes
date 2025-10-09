@@ -94,6 +94,10 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
   const getNoteOctave = (notes: string[], noteIndex: number): number => {
     let currentOctave = 4; // 시작 옥타브
     
+    console.log(`=== 옥타브 계산 디버깅 ===`);
+    console.log(`음계: [${notes.join(', ')}]`);
+    console.log(`계산할 인덱스: ${noteIndex}`);
+    
     for (let i = 0; i <= noteIndex; i++) {
       if (i > 0) {
         const currentNote = notes[i];
@@ -105,13 +109,23 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
         const currentIndex = noteOrder.indexOf(currentNote);
         const previousIndex = noteOrder.indexOf(previousNote);
         
+        console.log(`${i}: ${previousNote}(${previousIndex}) → ${currentNote}(${currentIndex}), 현재 옥타브: ${currentOctave}`);
+        
         // 알파벳이 감소하는 경우 (예: A# → C) 옥타브 증가
         if (currentIndex < previousIndex) {
           currentOctave++;
+          console.log(`  → 옥타브 증가! ${currentOctave-1} → ${currentOctave}`);
+        } else {
+          console.log(`  → 옥타브 유지: ${currentOctave}`);
         }
         // 알파벳이 증가하는 경우는 이전 옥타브 유지
+      } else {
+        console.log(`${i}: ${notes[i]} (첫 번째 음), 옥타브: ${currentOctave}`);
       }
     }
+    
+    console.log(`최종 결과: ${notes[noteIndex]}${currentOctave}`);
+    console.log(`========================`);
     
     return currentOctave;
   };
