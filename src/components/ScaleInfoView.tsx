@@ -119,6 +119,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
       // 하행은 상행의 마지막 옥타브에서 시작
       currentOctave = ascendingOctave;
       console.log(`하행 시작 옥타브 (상행 마지막): ${currentOctave}`);
+      console.log(`하행 음계 순서: [${notes.join(', ')}]`);
       
       // 하행 음계의 각 음에 대해 옥타브 계산
       for (let i = 0; i <= noteIndex; i++) {
@@ -217,6 +218,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
         }
         currentOctave = ascendingOctave;
         console.log(`하행 시작 옥타브 (상행 마지막): ${currentOctave}`);
+        console.log(`하행 음계 순서: [${notes.join(', ')}]`);
       }
       
       for (let i = 0; i < notes.length; i++) {
@@ -355,7 +357,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
             <div className="flex items-center justify-between mb-2">
               <h4 className="font-medium text-gray-700">하행 (Descending)</h4>
               <Button
-                onClick={() => playScale(descendingNotes, true)}
+                onClick={() => playScale([...descendingNotes].reverse(), true)}
                 disabled={isPlaying}
                 variant="outline"
                 size="sm"
@@ -379,10 +381,11 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
           <div className="grid grid-cols-7 gap-2 mb-4">
             {descendingNotes.map((note, index) => {
               const isCurrentlyPlaying = playingNote === note;
+              const reversedNotes = [...descendingNotes].reverse();
               return (
                 <button
                   key={`desc-${index}`}
-                  onClick={() => playNote(note, getNoteOctave(descendingNotes, index, true))}
+                  onClick={() => playNote(note, getNoteOctave(reversedNotes, index, true))}
                   disabled={isPlaying}
                   className={`
                     transition-all duration-200 transform
