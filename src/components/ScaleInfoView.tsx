@@ -101,11 +101,12 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
     
     if (isDescending) {
       // 하행 음계: 상행의 마지막 옥타브에서 시작
-      // 먼저 상행으로 옥타브를 계산해서 마지막 옥타브를 구함
+      // 상행 음계 배열을 사용해서 마지막 옥타브를 구함
+      const ascendingNotes = melodicMinorNotes; // 상행 가락단음계
       let ascendingOctave = 4;
-      for (let i = 1; i < notes.length; i++) {
-        const currentNote = notes[i];
-        const previousNote = notes[i-1];
+      for (let i = 1; i < ascendingNotes.length; i++) {
+        const currentNote = ascendingNotes[i];
+        const previousNote = ascendingNotes[i-1];
         const noteOrder = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
         const currentIndex = noteOrder.indexOf(currentNote);
         const previousIndex = noteOrder.indexOf(previousNote);
@@ -200,11 +201,12 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
       
       if (isDescending) {
         // 하행 음계: 상행의 마지막 옥타브에서 시작
-        // 먼저 상행으로 옥타브를 계산해서 마지막 옥타브를 구함
+        // 상행 음계 배열을 사용해서 마지막 옥타브를 구함
+        const ascendingNotes = melodicMinorNotes; // 상행 가락단음계
         let ascendingOctave = 4;
-        for (let i = 1; i < notes.length; i++) {
-          const currentNote = notes[i];
-          const previousNote = notes[i-1];
+        for (let i = 1; i < ascendingNotes.length; i++) {
+          const currentNote = ascendingNotes[i];
+          const previousNote = ascendingNotes[i-1];
           const noteOrder = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
           const currentIndex = noteOrder.indexOf(currentNote);
           const previousIndex = noteOrder.indexOf(previousNote);
@@ -353,7 +355,7 @@ export function ScaleInfoView({ onBack }: ScaleInfoViewProps) {
             <div className="flex items-center justify-between mb-2">
               <h4 className="font-medium text-gray-700">하행 (Descending)</h4>
               <Button
-                onClick={() => playScale([...descendingNotes].reverse(), true)}
+                onClick={() => playScale(descendingNotes, true)}
                 disabled={isPlaying}
                 variant="outline"
                 size="sm"
