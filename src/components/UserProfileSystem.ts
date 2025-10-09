@@ -40,7 +40,7 @@ export const ALL_BADGES: Badge[] = [
   {
     id: 'fretboard-beginner',
     name: '코드 입문자',
-    description: '초급 짝짓기 게임 5세트 완료',
+    description: '초급 짝짓기 게임 완료',
     level: 'beginner',
     gameType: 'fretboard-match',
     icon: '🎸',
@@ -49,7 +49,7 @@ export const ALL_BADGES: Badge[] = [
   {
     id: 'fretboard-intermediate',
     name: '코드 연습생',
-    description: '중급 짝짓기 게임 5세트 완료',
+    description: '중급 짝짓기 게임 완료',
     level: 'intermediate',
     gameType: 'fretboard-match',
     icon: '🎯',
@@ -58,7 +58,7 @@ export const ALL_BADGES: Badge[] = [
   {
     id: 'fretboard-advanced',
     name: '코드 마스터',
-    description: '고급 짝짓기 게임 5세트 완료',
+    description: '고급 짝짓기 게임 완료',
     level: 'advanced',
     gameType: 'fretboard-match',
     icon: '👑',
@@ -69,7 +69,7 @@ export const ALL_BADGES: Badge[] = [
   {
     id: 'input-beginner',
     name: '지판 탐험가',
-    description: '초급 코드 입력 게임 5세트 완료',
+    description: '초급 코드 입력 게임 완료',
     level: 'beginner',
     gameType: 'chord-input',
     icon: '🗺️',
@@ -78,7 +78,7 @@ export const ALL_BADGES: Badge[] = [
   {
     id: 'input-intermediate',
     name: '지판 숙련자',
-    description: '중급 코드 입력 게임 5세트 완료',
+    description: '중급 코드 입력 게임 완료',
     level: 'intermediate',
     gameType: 'chord-input',
     icon: '⚡',
@@ -87,7 +87,7 @@ export const ALL_BADGES: Badge[] = [
   {
     id: 'input-advanced',
     name: '지판 대가',
-    description: '고급 코드 입력 게임 5세트 완료',
+    description: '고급 코드 입력 게임 완료',
     level: 'advanced',
     gameType: 'chord-input',
     icon: '🏆',
@@ -261,7 +261,7 @@ class UserProfileManager {
     
     console.log(`${gameType} ${level} 진행도: ${currentProgress} -> ${this.profile.gameProgress[gameType][level]}`);
     
-    // 5세트 완료 시 배지 확인
+    // 5번 완료 시 자동 배지 확인 (실제로는 수동 배지 시스템이 더 많이 사용됨)
     if (this.profile.gameProgress[gameType][level] === 5) {
       const badgeId = gameType === 'fretboardMatch' 
         ? `fretboard-${level}` 

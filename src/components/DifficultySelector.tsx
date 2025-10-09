@@ -227,7 +227,7 @@ export function DifficultySelector({ gameType, onBack, onDifficultySelect }: Dif
                       ) : (
                         <div className="space-y-2">
                           <div className="text-xs text-purple-600 font-medium">
-                            게임을 완료하고 배지를 받아보세요!
+                            게임을 완료하고 배지를 획득해보세요!
                           </div>
                           <Button
                             size="sm"
@@ -238,7 +238,7 @@ export function DifficultySelector({ gameType, onBack, onDifficultySelect }: Dif
                             className="w-full h-8 text-xs bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white border-0"
                           >
                             <Gift className="w-3 h-3 mr-1" />
-                            배지 받기
+                            배지 획득하기
                           </Button>
                         </div>
                       )}

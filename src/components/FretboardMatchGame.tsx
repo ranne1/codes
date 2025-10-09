@@ -278,7 +278,7 @@ export function FretboardMatchGame({ onBack, difficulty }: FretboardMatchGamePro
                     <div className="flex items-center justify-center gap-2 text-sm">
                       <Trophy className="w-4 h-4 text-gray-400" />
                       <span className="text-gray-600">
-                        모든 코드를 완료하면 배지를 획득합니다!
+                        모든 코드를 완료하면 배지를 획득할 수 있습니다!
                       </span>
                     </div>
                   </CardContent>
@@ -374,7 +374,7 @@ export function FretboardMatchGame({ onBack, difficulty }: FretboardMatchGamePro
           })()}
           
           <p className="text-xs text-gray-500">
-            ✅ 모든 코드를 맞추면 {difficulty === 'beginner' ? '초급' : difficulty === 'intermediate' ? '중급' : '고급'} 배지를 획득합니다!
+            ✅ 모든 코드를 맞추면 {difficulty === 'beginner' ? '초급' : difficulty === 'intermediate' ? '중급' : '고급'} 배지를 획득할 수 있습니다!
           </p>
         </div>
 

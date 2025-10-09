@@ -231,7 +231,7 @@ export function ProfileView({ onBack }: ProfileViewProps) {
                             </div>
                           ) : (
                             <div className="text-xs text-gray-400">
-                              {badge.level === 'beginner' ? '초급' : badge.level === 'intermediate' ? '중급' : '고급'} 게임 완료 시 획득
+                              {badge.level === 'beginner' ? '초급' : badge.level === 'intermediate' ? '중급' : '고급'} 게임을 완료하면 획득
                             </div>
                           )}
                         </div>

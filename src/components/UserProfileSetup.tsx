@@ -91,7 +91,7 @@ export function UserProfileSetup({ onProfileCreated }: UserProfileSetupProps) {
                   </div>
                   <div className="text-xs text-gray-600">
                     <div className="font-medium">배지 수집</div>
-                    <div>5세트 클리어 보상</div>
+                    <div>게임 완료 보상</div>
                   </div>
                 </div>
                 

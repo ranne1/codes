@@ -390,7 +390,7 @@ export function ChordInputGame({ onBack, difficulty }: ChordInputGameProps) {
                     <div className="flex items-center justify-center gap-2 text-sm">
                       <Trophy className="w-4 h-4 text-gray-400" />
                       <span className="text-gray-600">
-                        모든 코드를 완료하면 배지를 획득합니다!
+                        모든 코드를 완료하면 배지를 획득할 수 있습니다!
                       </span>
                     </div>
                   </CardContent>
@@ -511,7 +511,7 @@ export function ChordInputGame({ onBack, difficulty }: ChordInputGameProps) {
               <div className="text-xs text-gray-500 space-y-1">
                 <p>🎵 '코드 듣기' 버튼으로 목표 코드를 미리 들어보세요</p>
                 <p>🎸 지판 클릭 시 해당 음이 클래식 기타 사운드로 재생됩니다</p>
-                <p>✅ 모든 코드를 맞추면 {difficulty === 'beginner' ? '초급' : difficulty === 'intermediate' ? '중급' : '고급'} 배지를 획득합니다!</p>
+                <p>✅ 모든 코드를 맞추면 {difficulty === 'beginner' ? '초급' : difficulty === 'intermediate' ? '중급' : '고급'} 배지를 획득할 수 있습니다!</p>
               </div>
             </div>
           </>
